@@ -1,0 +1,75 @@
+{
+  "_from": "@caliatys/cognito-service@1.5.2",
+  "_id": "@caliatys/cognito-service@1.5.2",
+  "_inBundle": false,
+  "_integrity": "sha512-nCtlZ5CvYXucU8tpliL6RZbkAEHnFzzMpbipSJPkP1cJqyQGXL2LtprhtEv4JC7rguucCpAyNkA6/FR4pp8i3Q==",
+  "_location": "/@caliatys/cognito-service",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@caliatys/cognito-service@1.5.2",
+    "name": "@caliatys/cognito-service",
+    "escapedName": "@caliatys%2fcognito-service",
+    "scope": "@caliatys",
+    "rawSpec": "1.5.2",
+    "saveSpec": null,
+    "fetchSpec": "1.5.2"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@caliatys/cognito-service/-/cognito-service-1.5.2.tgz",
+  "_shasum": "0c3037dc86b93caa76494aa6d71d807019789547",
+  "_spec": "@caliatys/cognito-service@1.5.2",
+  "_where": "C:\\Users\\TRIDENT MT5161\\rewardplatformfuse",
+  "author": {
+    "name": "Nicolas Roehm",
+    "email": "nicolas.roehm@gmail.com"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  },
+  "deprecated": false,
+  "description": "Typescript service for AWS Cognito with Angular",
+  "devDependencies": {
+    "@types/node": "10.12.0"
+  },
+  "es2015": "fesm2015/caliatys-cognito-service.js",
+  "esm2015": "esm2015/caliatys-cognito-service.js",
+  "esm5": "esm5/caliatys-cognito-service.js",
+  "fesm2015": "fesm2015/caliatys-cognito-service.js",
+  "fesm5": "fesm5/caliatys-cognito-service.js",
+  "homepage": "https://github.com/Caliatys/CognitoService#readme",
+  "keywords": [
+    "authentication",
+    "aws",
+    "cognito",
+    "facebook",
+    "google",
+    "angular",
+    "typescript",
+    "javascript"
+  ],
+  "license": "MIT",
+  "main": "bundles/caliatys-cognito-service.umd.js",
+  "metadata": "caliatys-cognito-service.metadata.json",
+  "module": "fesm5/caliatys-cognito-service.js",
+  "name": "@caliatys/cognito-service",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0 || ^7.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0",
+    "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.0.0",
+    "amazon-cognito-identity-js": "^2.0.6",
+    "aws-sdk": "^2.247.1",
+    "@types/gapi": "0.0.35",
+    "@types/gapi.auth2": "0.0.47"
+  },
+  "private": false,
+  "sideEffects": false,
+  "typings": "caliatys-cognito-service.d.ts",
+  "version": "1.5.2"
+}
