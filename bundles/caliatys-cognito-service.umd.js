@@ -1,14 +1,15 @@
-(function (global, factory) {
+(function(global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('amazon-cognito-identity-js'), require('aws-sdk')) :
-    typeof define === 'function' && define.amd ? define('@caliatys/cognito-service', ['exports', '@angular/core', 'amazon-cognito-identity-js', 'aws-sdk'], factory) :
-    (factory((global.caliatys = global.caliatys || {}, global.caliatys['cognito-service'] = {}),global.ng.core,global.AWSCognito,global.AWS));
-}(this, (function (exports,i0,AWSCognito,AWS) { 'use strict';
+        typeof define === 'function' && define.amd ? define('@caliatys/cognito-service', ['exports', '@angular/core', 'amazon-cognito-identity-js', 'aws-sdk'], factory) :
+        (factory((global.caliatys = global.caliatys || {}, global.caliatys['cognito-service'] = {}), global.ng.core, global.AWSCognito, global.AWS));
+}(this, (function(exports, i0, AWSCognito, AWS) {
+    'use strict';
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var CognitoServiceResponse = /** @class */ (function () {
+    var CognitoServiceResponse = /** @class */ (function() {
         function CognitoServiceResponse(type, data) {
             this.type = type;
             this.data = data;
@@ -56,7 +57,7 @@
         REFRESH: 'refresh',
         LOGOUT: 'logout',
     };
-    var CognitoService = /** @class */ (function () {
+    var CognitoService = /** @class */ (function() {
         function CognitoService(cognitoConst) {
             this.cognitoConst = cognitoConst;
             this.poolData = {
@@ -95,7 +96,7 @@
             /**
              * @return {?}
              */
-            function () {
+            function() {
                 if (this.getRemaining())
                     return true;
                 return false;
@@ -103,30 +104,35 @@
         /**
          * @return {?}
          */
-        CognitoService.prototype.sts = /**
-         * @return {?}
-         */
-            function () {
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    /** @type {?} */
-                    var sts = new AWS.STS();
-                    /** @type {?} */
-                    var params = null;
-                    sts.getCallerIdentity(params, ( /**
-                     * @param {?} err
-                     * @param {?} data
+        CognitoService.prototype.sts =
+            /**
+             * @return {?}
+             */
+            function() {
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, data) {
-                        if (data)
-                            return resolve(data);
-                        console.error('CognitoService : sts -> getCallerIdentity', err);
-                        return reject(err);
+                     */
+                    function(resolve, reject) {
+                        /** @type {?} */
+                        var sts = new AWS.STS();
+                        /** @type {?} */
+                        var params = null;
+                        sts.getCallerIdentity(params, (
+                            /**
+                             * @param {?} err
+                             * @param {?} data
+                             * @return {?}
+                             */
+                            function(err, data) {
+                                if (data)
+                                    return resolve(data);
+                                console.error('CognitoService : sts -> getCallerIdentity', err);
+                                return reject(err);
+                            }));
                     }));
-                }));
             };
         // NOTE: Session -----------------------------------------------------------------------------
         // NOTE: Session -----------------------------------------------------------------------------
@@ -138,7 +144,7 @@
             /**
              * @return {?}
              */
-            function () {
+            function() {
                 var _this = this;
                 /** @type {?} */
                 var expiresAt = this.getExpiresAt();
@@ -150,30 +156,39 @@
                     this.signOut();
                     return;
                 }
-                setTimeout(( /**
-                 * @return {?}
-                 */function () {
-                    // Refresh token
-                    _this.refreshSession().then(( /**
-                     * @param {?} _
+                setTimeout((
+                    /**
                      * @return {?}
-                     */function (_) {
-                        _this.autoRefreshSession();
-                    })).catch(( /**
-                     * @param {?} _
-                     * @return {?}
-                     */function (_) {
-                        _this.signOut();
-                    }));
-                }), timeDiff);
+                     */
+                    function() {
+                        // Refresh token
+                        _this.refreshSession()
+                            .then((
+                                /**
+                                 * @param {?} _
+                                 * @return {?}
+                                 */
+                                function(_) {
+                                    _this.autoRefreshSession();
+                                }))
+                            .catch((
+                                /**
+                                 * @param {?} _
+                                 * @return {?}
+                                 */
+                                function(_) {
+                                    _this.signOut();
+                                }));
+                    }), timeDiff);
             };
         /**
          * @return {?}
          */
-        CognitoService.prototype.getRemaining = /**
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.getRemaining =
+            /**
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var remaining = 0;
                 /** @type {?} */
@@ -192,10 +207,11 @@
         /**
          * @return {?}
          */
-        CognitoService.prototype.getExpiresAt = /**
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.getExpiresAt =
+            /**
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var storageKey = null;
                 /** @type {?} */
@@ -223,7 +239,7 @@
             /**
              * @return {?}
              */
-            function () {
+            function() {
                 /** @type {?} */
                 var storageKey = null;
                 /** @type {?} */
@@ -242,7 +258,7 @@
             /**
              * @return {?}
              */
-            function () {
+            function() {
                 /** @type {?} */
                 var storageKey = null;
                 /** @type {?} */
@@ -261,7 +277,7 @@
             /**
              * @return {?}
              */
-            function () {
+            function() {
                 /** @type {?} */
                 var storageKey = null;
                 /** @type {?} */
@@ -273,10 +289,11 @@
         /**
          * @return {?}
          */
-        CognitoService.prototype.getTokens = /**
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.getTokens =
+            /**
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var storageKey = null;
                 /** @type {?} */
@@ -307,7 +324,7 @@
             /**
              * @return {?}
              */
-            function () {
+            function() {
                 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                     IdentityPoolId: this.identityPool,
                 });
@@ -316,44 +333,50 @@
         /**
          * @return {?}
          */
-        CognitoService.prototype.getCredentials = /**
-         * @return {?}
-         */
-            function () {
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    /** @type {?} */
-                    var credentials = ( /** @type {?} */(AWS.config.credentials));
-                    if (!credentials) {
-                        /** @type {?} */
-                        var error = 'You must initialize the credentials with initCredentials()';
-                        console.error('CognitoService : getCredentials', error);
-                        return reject(error);
-                    }
-                    credentials.get(( /**
-                     * @param {?} err
+        CognitoService.prototype.getCredentials =
+            /**
+             * @return {?}
+             */
+            function() {
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err) {
-                        if (err) {
-                            console.error('CognitoService : getCredentials', err);
-                            return reject(err);
+                     */
+                    function(resolve, reject) {
+                        /** @type {?} */
+                        var credentials = ( /** @type {?} */ (AWS.config.credentials));
+                        if (!credentials) {
+                            /** @type {?} */
+                            var error = 'You must initialize the credentials with initCredentials()';
+                            console.error('CognitoService : getCredentials', error);
+                            return reject(error);
                         }
-                        return resolve(AWS.config.credentials);
+                        credentials.get((
+                            /**
+                             * @param {?} err
+                             * @return {?}
+                             */
+                            function(err) {
+                                if (err) {
+                                    console.error('CognitoService : getCredentials', err);
+                                    return reject(err);
+                                }
+                                return resolve(AWS.config.credentials);
+                            }));
                     }));
-                }));
             };
         /**
          * @param {?=} clientConfig
          * @return {?}
          */
-        CognitoService.prototype.updateCredentials = /**
-         * @param {?=} clientConfig
-         * @return {?}
-         */
-            function (clientConfig) {
+        CognitoService.prototype.updateCredentials =
+            /**
+             * @param {?=} clientConfig
+             * @return {?}
+             */
+            function(clientConfig) {
                 /** @type {?} */
                 var url = null;
                 /** @type {?} */
@@ -409,7 +432,7 @@
              * @param {?=} username
              * @return {?}
              */
-            function (username) {
+            function(username) {
                 if (username === void 0) {
                     username = null;
                 }
@@ -435,80 +458,92 @@
         /**
          * @return {?}
          */
-        CognitoService.prototype.getUserAttributes = /**
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.getUserAttributes =
+            /**
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                cognitoUser.getUserAttributes(( /**
-                 * @param {?} err
-                 * @param {?} res
-                 * @return {?}
-                 */function (err, res) {
-                    if (res)
-                        return res;
-                    console.error('CognitoService : getUserAttributes -> getUserAttributes', err);
-                }));
+                cognitoUser.getUserAttributes((
+                    /**
+                     * @param {?} err
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    function(err, res) {
+                        if (res)
+                            return res;
+                        console.error('CognitoService : getUserAttributes -> getUserAttributes', err);
+                    }));
             };
         /**
          * @param {?} attributeList
          * @return {?}
          */
-        CognitoService.prototype.deleteAttributes = /**
-         * @param {?} attributeList
-         * @return {?}
-         */
-            function (attributeList) {
+        CognitoService.prototype.deleteAttributes =
+            /**
+             * @param {?} attributeList
+             * @return {?}
+             */
+            function(attributeList) {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                cognitoUser.deleteAttributes(attributeList, ( /**
-                 * @param {?} err
-                 * @param {?} res
-                 * @return {?}
-                 */function (err, res) {
-                    if (res)
-                        return res;
-                    console.error('CognitoService : deleteAttributes -> deleteAttributes', err);
-                }));
+                cognitoUser.deleteAttributes(attributeList, (
+                    /**
+                     * @param {?} err
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    function(err, res) {
+                        if (res)
+                            return res;
+                        console.error('CognitoService : deleteAttributes -> deleteAttributes', err);
+                    }));
             };
         /**
          * @return {?}
          */
-        CognitoService.prototype.getUserData = /**
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.getUserData =
+            /**
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                cognitoUser.getUserData(( /**
-                 * @param {?} err
-                 * @param {?} res
-                 * @return {?}
-                 */function (err, res) {
-                    if (res)
-                        return res;
-                    console.error('CognitoService : getUserData -> getUserData', err);
-                }));
+                cognitoUser.getUserData((
+                    /**
+                     * @param {?} err
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    function(err, res) {
+                        if (res)
+                            return res;
+                        console.error('CognitoService : getUserData -> getUserData', err);
+                    }));
             };
         /**
          * @return {?}
          */
-        CognitoService.prototype.deleteUser = /**
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.deleteUser =
+            /**
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                cognitoUser.deleteUser(( /**
-                 * @param {?} err
-                 * @param {?} res
-                 * @return {?}
-                 */function (err, res) {
-                    if (res)
-                        return res;
-                    console.error('CognitoService : deleteUser -> deleteUser', err);
-                }));
+                cognitoUser.deleteUser((
+                    /**
+                     * @param {?} err
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    function(err, res) {
+                        if (res)
+                            return res;
+                        console.error('CognitoService : deleteUser -> deleteUser', err);
+                    }));
             };
         // !SECTION
         // -------------------------------------------------------------------------------------------
@@ -549,7 +584,7 @@
              * @param {?=} validationData - Optional parameter
              * @return {?}
              */
-            function (username, password, userAttributes, validationData) {
+            function(username, password, userAttributes, validationData) {
                 var _this = this;
                 if (userAttributes === void 0) {
                     userAttributes = [];
@@ -559,28 +594,32 @@
                 }
                 /** @type {?} */
                 var userPool = new AWSCognito.CognitoUserPool(this.poolData);
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    userPool.signUp(username, password, userAttributes, validationData, ( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res) {
-                            _this.setUsername(username);
-                            /** @type {?} */
-                            var response_1 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                            return resolve(response_1);
-                        }
-                        console.error('CognitoService : signUp -> signUp', err);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                        return reject(response);
+                     */
+                    function(resolve, reject) {
+                        userPool.signUp(username, password, userAttributes, validationData, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res) {
+                                    _this.setUsername(username);
+                                    /** @type {?} */
+                                    var response_1 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                    return resolve(response_1);
+                                }
+                                console.error('CognitoService : signUp -> signUp', err);
+                                /** @type {?} */
+                                var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                return reject(response);
+                            }));
                     }));
-                }));
             };
         /**
          * Confirm the signUp action
@@ -595,40 +634,45 @@
          * @param {?=} forceAliasCreation - Optional parameter
          * @return {?}
          */
-        CognitoService.prototype.confirmRegistration = /**
-         * Confirm the signUp action
-         *
-         * @param {?} verificationCode
-         * @param {?=} forceAliasCreation - Optional parameter
-         * @return {?}
-         */
-            function (verificationCode, forceAliasCreation) {
+        CognitoService.prototype.confirmRegistration =
+            /**
+             * Confirm the signUp action
+             *
+             * @param {?} verificationCode
+             * @param {?=} forceAliasCreation - Optional parameter
+             * @return {?}
+             */
+            function(verificationCode, forceAliasCreation) {
                 if (forceAliasCreation === void 0) {
                     forceAliasCreation = false;
                 }
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.confirmRegistration(verificationCode, forceAliasCreation, ( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res) {
-                            /** @type {?} */
-                            var response_2 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                            return resolve(response_2);
-                        }
-                        console.error('CognitoService : confirmRegistration -> confirmRegistration', err);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                        return reject(response);
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.confirmRegistration(verificationCode, forceAliasCreation, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res) {
+                                    /** @type {?} */
+                                    var response_2 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                    return resolve(response_2);
+                                }
+                                console.error('CognitoService : confirmRegistration -> confirmRegistration', err);
+                                /** @type {?} */
+                                var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                return reject(response);
+                            }));
                     }));
-                }));
             };
         /**
          * Resend the signUp confirmation code
@@ -637,34 +681,39 @@
          * Resend the signUp confirmation code
          * @return {?}
          */
-        CognitoService.prototype.resendConfirmationCode = /**
-         * Resend the signUp confirmation code
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.resendConfirmationCode =
+            /**
+             * Resend the signUp confirmation code
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.resendConfirmationCode(( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res) {
-                            /** @type {?} */
-                            var response_3 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                            return resolve(response_3);
-                        }
-                        console.error('CognitoService : resendConfirmationCode -> resendConfirmationCode', err);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                        return reject(response);
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.resendConfirmationCode((
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res) {
+                                    /** @type {?} */
+                                    var response_3 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                    return resolve(response_3);
+                                }
+                                console.error('CognitoService : resendConfirmationCode -> resendConfirmationCode', err);
+                                /** @type {?} */
+                                var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                return reject(response);
+                            }));
                     }));
-                }));
             };
         // !SECTION
         // -------------------------------------------------------------------------------------------
@@ -699,7 +748,7 @@
              * @param {?=} mfaType - Optional parameter (SOFTWARE_TOKEN_MFA / SMS_MFA)
              * @return {?}
              */
-            function (mfaCode, mfaType) {
+            function(mfaCode, mfaType) {
                 var _this = this;
                 if (mfaType === void 0) {
                     mfaType = null;
@@ -709,36 +758,42 @@
                 // SMS_MFA
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.sendMFACode(mfaCode, {
-                        onSuccess: ( /**
-                         * @param {?} session
-                         * @return {?}
-                         */function (session) {
-                            _this.setUsername(cognitoUser.getUsername());
-                            _this.updateTokens(session);
-                            _this.setProvider(AuthType.COGNITO);
-                            _this.updateCredentials();
-                            _this.onSignIn.emit();
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_SUCCESS, session);
-                            return resolve(response);
-                        }),
-                        onFailure: ( /**
-                         * @param {?} err
-                         * @return {?}
-                         */function (err) {
-                            console.error('CognitoService : sendMFACode -> sendMFACode', err);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                            return reject(response);
-                        })
-                    }, mfaType);
-                }));
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
+                     * @return {?}
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.sendMFACode(mfaCode, {
+                            onSuccess: (
+                                /**
+                                 * @param {?} session
+                                 * @return {?}
+                                 */
+                                function(session) {
+                                    _this.setUsername(cognitoUser.getUsername());
+                                    _this.updateTokens(session);
+                                    _this.setProvider(AuthType.COGNITO);
+                                    _this.updateCredentials();
+                                    _this.onSignIn.emit();
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_SUCCESS, session);
+                                    return resolve(response);
+                                }),
+                            onFailure: (
+                                /**
+                                 * @param {?} err
+                                 * @return {?}
+                                 */
+                                function(err) {
+                                    console.error('CognitoService : sendMFACode -> sendMFACode', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                })
+                        }, mfaType);
+                    }));
             };
         /**
          * Return the user's MFA status
@@ -747,34 +802,39 @@
          * Return the user's MFA status
          * @return {?}
          */
-        CognitoService.prototype.getMFAOptions = /**
-         * Return the user's MFA status
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.getMFAOptions =
+            /**
+             * Return the user's MFA status
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.getMFAOptions(( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res) {
-                            /** @type {?} */
-                            var response_4 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                            return resolve(response_4);
-                        }
-                        console.error('CognitoService : getMFAOptions -> getMFAOptions', err);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                        return reject(response);
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.getMFAOptions((
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res) {
+                                    /** @type {?} */
+                                    var response_4 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                    return resolve(response_4);
+                                }
+                                console.error('CognitoService : getMFAOptions -> getMFAOptions', err);
+                                /** @type {?} */
+                                var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                return reject(response);
+                            }));
                     }));
-                }));
             };
         /**
          * Return the user's MFA status (must have a phone_number set)
@@ -787,55 +847,61 @@
          * @param {?} enableMfa
          * @return {?}
          */
-        CognitoService.prototype.setMfa = /**
-         * Return the user's MFA status (must have a phone_number set)
-         *
-         * @param {?} enableMfa
-         * @return {?}
-         */
-            function (enableMfa) {
+        CognitoService.prototype.setMfa =
+            /**
+             * Return the user's MFA status (must have a phone_number set)
+             *
+             * @param {?} enableMfa
+             * @return {?}
+             */
+            function(enableMfa) {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    if (enableMfa) {
-                        cognitoUser.enableMFA(( /**
-                         * @param {?} err
-                         * @param {?} res
-                         * @return {?}
-                         */function (err, res) {
-                            if (res) {
-                                /** @type {?} */
-                                var response_5 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                                return resolve(response_5);
-                            }
-                            console.error('CognitoService : setMfa -> enableMFA', err);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                            return reject(response);
-                        }));
-                    }
-                    else {
-                        cognitoUser.disableMFA(( /**
-                         * @param {?} err
-                         * @param {?} res
-                         * @return {?}
-                         */function (err, res) {
-                            if (res) {
-                                /** @type {?} */
-                                var response_6 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                                return resolve(response_6);
-                            }
-                            console.error('CognitoService : setMfa -> disableMFA', err);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                            return reject(response);
-                        }));
-                    }
-                }));
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
+                     * @return {?}
+                     */
+                    function(resolve, reject) {
+                        if (enableMfa) {
+                            cognitoUser.enableMFA((
+                                /**
+                                 * @param {?} err
+                                 * @param {?} res
+                                 * @return {?}
+                                 */
+                                function(err, res) {
+                                    if (res) {
+                                        /** @type {?} */
+                                        var response_5 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                        return resolve(response_5);
+                                    }
+                                    console.error('CognitoService : setMfa -> enableMFA', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                }));
+                        } else {
+                            cognitoUser.disableMFA((
+                                /**
+                                 * @param {?} err
+                                 * @param {?} res
+                                 * @return {?}
+                                 */
+                                function(err, res) {
+                                    if (res) {
+                                        /** @type {?} */
+                                        var response_6 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                        return resolve(response_6);
+                                    }
+                                    console.error('CognitoService : setMfa -> disableMFA', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                }));
+                        }
+                    }));
             };
         // !SECTION
         // -------------------------------------------------------------------------------------------
@@ -870,48 +936,59 @@
              * @param {?=} requiredAttributeData - Optional parameter
              * @return {?}
              */
-            function (newPassword, requiredAttributeData) {
+            function(newPassword, requiredAttributeData) {
                 var _this = this;
                 if (requiredAttributeData === void 0) {
                     requiredAttributeData = {};
                 }
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.completeNewPasswordChallenge(newPassword, requiredAttributeData, {
-                        onSuccess: ( /**
-                         * @param {?} session
-                         * @return {?}
-                         */function (session) {
-                            _this.updateTokens(session);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_SUCCESS, session);
-                            return resolve(response);
-                        }),
-                        onFailure: ( /**
-                         * @param {?} err
-                         * @return {?}
-                         */function (err) {
-                            console.error('CognitoService : newPasswordRequired -> completeNewPasswordChallenge', err);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                            return reject(response);
-                        }),
-                        mfaRequired: ( /**
-                         * @param {?} challengeName
-                         * @param {?} challengeParameters
-                         * @return {?}
-                         */function (challengeName, challengeParameters) {
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.MFA_REQUIRED, { challengeName: challengeName, challengeParameters: challengeParameters });
-                            return resolve(response);
-                        })
-                    });
-                }));
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
+                     * @return {?}
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.completeNewPasswordChallenge(newPassword, requiredAttributeData, {
+                            onSuccess: (
+                                /**
+                                 * @param {?} session
+                                 * @return {?}
+                                 */
+                                function(session) {
+                                    _this.updateTokens(session);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_SUCCESS, session);
+                                    return resolve(response);
+                                }),
+                            onFailure: (
+                                /**
+                                 * @param {?} err
+                                 * @return {?}
+                                 */
+                                function(err) {
+                                    console.error('CognitoService : newPasswordRequired -> completeNewPasswordChallenge', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                }),
+                            mfaRequired: (
+                                /**
+                                 * @param {?} challengeName
+                                 * @param {?} challengeParameters
+                                 * @return {?}
+                                 */
+                                function(challengeName, challengeParameters) {
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.MFA_REQUIRED, {
+                                        challengeName: challengeName,
+                                        challengeParameters: challengeParameters
+                                    });
+                                    return resolve(response);
+                                })
+                        });
+                    }));
             };
         /**
          * Initiate forgot password flow
@@ -924,51 +1001,60 @@
          * @param {?} username
          * @return {?}
          */
-        CognitoService.prototype.forgotPassword = /**
-         * Initiate forgot password flow
-         *
-         * @param {?} username
-         * @return {?}
-         */
-            function (username) {
+        CognitoService.prototype.forgotPassword =
+            /**
+             * Initiate forgot password flow
+             *
+             * @param {?} username
+             * @return {?}
+             */
+            function(username) {
                 /** @type {?} */
                 var cognitoUser = this.setCognitoUser(username);
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.forgotPassword({
-                        onSuccess: ( /**
-                         * @param {?} data
-                         * @return {?}
-                         */function (data) {
-                            // NOTE: onSuccess is called if there is no inputVerificationCode callback
-                            // NOTE: https://github.com/amazon-archives/amazon-cognito-identity-js/issues/324
-                            // NOTE: https://github.com/amazon-archives/amazon-cognito-identity-js/issues/323
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_SUCCESS, data);
-                            return resolve(response);
-                        }),
-                        onFailure: ( /**
-                         * @param {?} err
-                         * @return {?}
-                         */function (err) {
-                            console.error('CognitoService : forgotPassword -> forgotPassword', err);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                            return reject(response);
-                        }),
-                        inputVerificationCode: ( /**
-                         * @param {?} data
-                         * @return {?}
-                         */function (data) {
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.INPUT_VERIFICATION_CODE, data);
-                            return resolve(response);
-                        })
-                    });
-                }));
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
+                     * @return {?}
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.forgotPassword({
+                            onSuccess: (
+                                /**
+                                 * @param {?} data
+                                 * @return {?}
+                                 */
+                                function(data) {
+                                    // NOTE: onSuccess is called if there is no inputVerificationCode callback
+                                    // NOTE: https://github.com/amazon-archives/amazon-cognito-identity-js/issues/324
+                                    // NOTE: https://github.com/amazon-archives/amazon-cognito-identity-js/issues/323
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_SUCCESS, data);
+                                    return resolve(response);
+                                }),
+                            onFailure: (
+                                /**
+                                 * @param {?} err
+                                 * @return {?}
+                                 */
+                                function(err) {
+                                    console.error('CognitoService : forgotPassword -> forgotPassword', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                }),
+                            inputVerificationCode: (
+                                /**
+                                 * @param {?} data
+                                 * @return {?}
+                                 */
+                                function(data) {
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.INPUT_VERIFICATION_CODE, data);
+                                    return resolve(response);
+                                })
+                        });
+                    }));
             };
         /**
          * Resend the forgotPassword verification code
@@ -977,47 +1063,56 @@
          * Resend the forgotPassword verification code
          * @return {?}
          */
-        CognitoService.prototype.getAttributeVerificationCode = /**
-         * Resend the forgotPassword verification code
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.getAttributeVerificationCode =
+            /**
+             * Resend the forgotPassword verification code
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    /** @type {?} */
-                    var name = null;
-                    cognitoUser.getAttributeVerificationCode(name, {
-                        onSuccess: ( /**
-                         * @return {?}
-                         */function () {
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_SUCCESS, null);
-                            return resolve(response);
-                        }),
-                        onFailure: ( /**
-                         * @param {?} err
-                         * @return {?}
-                         */function (err) {
-                            console.error('CognitoService : getAttributeVerificationCode -> getAttributeVerificationCode', err);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                            return reject(response);
-                        }),
-                        inputVerificationCode: ( /**
-                         * @param {?} data
-                         * @return {?}
-                         */function (data) {
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.INPUT_VERIFICATION_CODE, data);
-                            return resolve(response);
-                        })
-                    });
-                }));
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
+                     * @return {?}
+                     */
+                    function(resolve, reject) {
+                        /** @type {?} */
+                        var name = null;
+                        cognitoUser.getAttributeVerificationCode(name, {
+                            onSuccess: (
+                                /**
+                                 * @return {?}
+                                 */
+                                function() {
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_SUCCESS, null);
+                                    return resolve(response);
+                                }),
+                            onFailure: (
+                                /**
+                                 * @param {?} err
+                                 * @return {?}
+                                 */
+                                function(err) {
+                                    console.error('CognitoService : getAttributeVerificationCode -> getAttributeVerificationCode', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                }),
+                            inputVerificationCode: (
+                                /**
+                                 * @param {?} data
+                                 * @return {?}
+                                 */
+                                function(data) {
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.INPUT_VERIFICATION_CODE, data);
+                                    return resolve(response);
+                                })
+                        });
+                    }));
             };
         /**
          * Finish forgot password flow
@@ -1032,40 +1127,47 @@
          * @param {?} verificationCode
          * @return {?}
          */
-        CognitoService.prototype.confirmPassword = /**
-         * Finish forgot password flow
-         *
-         * @param {?} newPassword
-         * @param {?} verificationCode
-         * @return {?}
-         */
-            function (newPassword, verificationCode) {
+        CognitoService.prototype.confirmPassword =
+            /**
+             * Finish forgot password flow
+             *
+             * @param {?} newPassword
+             * @param {?} verificationCode
+             * @return {?}
+             */
+            function(newPassword, verificationCode) {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.confirmPassword(verificationCode, newPassword, {
-                        onSuccess: /**
-                         * @return {?}
-                         */ function () {
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_SUCCESS, null);
-                            return resolve(response);
-                        },
-                        onFailure: ( /**
-                         * @param {?} err
-                         * @return {?}
-                         */function (err) {
-                            console.error('CognitoService : confirmPassword -> confirmPassword', err);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                            return reject(response);
-                        })
-                    });
-                }));
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
+                     * @return {?}
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.confirmPassword(verificationCode, newPassword, {
+                            onSuccess:
+                                /**
+                                 * @return {?}
+                                 */
+                                function() {
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_SUCCESS, null);
+                                    return resolve(response);
+                                },
+                            onFailure: (
+                                /**
+                                 * @param {?} err
+                                 * @return {?}
+                                 */
+                                function(err) {
+                                    console.error('CognitoService : confirmPassword -> confirmPassword', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                })
+                        });
+                    }));
             };
         /**
          * Update a user's password
@@ -1080,37 +1182,42 @@
          * @param {?} newPassword
          * @return {?}
          */
-        CognitoService.prototype.changePassword = /**
-         * Update a user's password
-         *
-         * @param {?} oldPassword
-         * @param {?} newPassword
-         * @return {?}
-         */
-            function (oldPassword, newPassword) {
+        CognitoService.prototype.changePassword =
+            /**
+             * Update a user's password
+             *
+             * @param {?} oldPassword
+             * @param {?} newPassword
+             * @return {?}
+             */
+            function(oldPassword, newPassword) {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.changePassword(oldPassword, newPassword, ( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res) {
-                            /** @type {?} */
-                            var response_7 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                            return resolve(response_7);
-                        }
-                        console.error('CognitoService : changePassword -> changePassword', err);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                        return reject(response);
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.changePassword(oldPassword, newPassword, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res) {
+                                    /** @type {?} */
+                                    var response_7 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                    return resolve(response_7);
+                                }
+                                console.error('CognitoService : changePassword -> changePassword', err);
+                                /** @type {?} */
+                                var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                return reject(response);
+                            }));
                     }));
-                }));
             };
         // !SECTION
         // -------------------------------------------------------------------------------------------
@@ -1135,7 +1242,7 @@
              * @param {?} password
              * @return {?}
              */
-            function (username, password,email,offerId,clientId,firstName,lastName,onlineUser) {
+            function(username, password, email, offerId, clientId, firstName, lastName, onlineUser, resubmission) {
                 this.setAdmin();
                 /** @type {?} */
 
@@ -1143,61 +1250,69 @@
                     UserPoolId: this.poolData.UserPoolId,
                     Username: username,
                     TemporaryPassword: password,
-                    UserAttributes: [
-                          {
+                    UserAttributes: [{
                             "Name": "email",
                             "Value": email
-                          },
-                          {
+                        },
+                        {
                             "Name": "custom:offerno",
                             "Value": offerId
-                          },
-                          {
+                        },
+                        {
                             "Name": "custom:clientId",
                             "Value": clientId
-                          },
-                          {
+                        },
+                        {
                             "Name": "name",
                             "Value": firstName
-                          },
-                          {
+                        },
+                        {
                             "Name": "family_name",
                             "Value": lastName
-                          },
-                          {
-                              "Name": "custom:onlineUser",
-                              "Value": onlineUser
-                          }
-                        ]
+                        },
+                        {
+                            "Name": "custom:onlineUser",
+                            "Value": onlineUser
+                        },
+                        {
+                            "Name": "custom:resubmission",
+                            "Value": resubmission
+                        }
+                    ]
                 };
                 /** @type {?} */
                 var cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoIdentityServiceProvider.adminCreateUser(params, ( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res)
-                            return resolve(res);
-                        console.error('CognitoService : adminCreateUser -> adminCreateUser', err);
-                        return reject(err);
+                     */
+                    function(resolve, reject) {
+                        cognitoIdentityServiceProvider.adminCreateUser(params, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res)
+                                    return resolve(res);
+                                console.error('CognitoService : adminCreateUser -> adminCreateUser', err);
+                                return reject(err);
+                            }));
                     }));
-                }));
             };
         /**
          * @param {?} username
          * @return {?}
          */
-        CognitoService.prototype.adminDeleteUser = /**
-         * @param {?} username
-         * @return {?}
-         */
-            function (username) {
+        CognitoService.prototype.adminDeleteUser =
+            /**
+             * @param {?} username
+             * @return {?}
+             */
+            function(username) {
                 this.setAdmin();
                 /** @type {?} */
                 var params = {
@@ -1206,32 +1321,37 @@
                 };
                 /** @type {?} */
                 var cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoIdentityServiceProvider.adminDeleteUser(params, ( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res)
-                            return resolve(res);
-                        console.error('CognitoService : adminDeleteUser -> adminDeleteUser', err);
-                        return reject(err);
+                     */
+                    function(resolve, reject) {
+                        cognitoIdentityServiceProvider.adminDeleteUser(params, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res)
+                                    return resolve(res);
+                                console.error('CognitoService : adminDeleteUser -> adminDeleteUser', err);
+                                return reject(err);
+                            }));
                     }));
-                }));
             };
         /**
          * @param {?} username
          * @return {?}
          */
-        CognitoService.prototype.adminResetUserPassword = /**
-         * @param {?} username
-         * @return {?}
-         */
-            function (username) {
+        CognitoService.prototype.adminResetUserPassword =
+            /**
+             * @param {?} username
+             * @return {?}
+             */
+            function(username) {
                 this.setAdmin();
                 /** @type {?} */
                 var params = {
@@ -1240,34 +1360,39 @@
                 };
                 /** @type {?} */
                 var cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoIdentityServiceProvider.adminResetUserPassword(params, ( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res)
-                            return resolve(res);
-                        console.error('CognitoService : adminResetUserPassword -> adminResetUserPassword', err);
-                        return reject(err);
+                     */
+                    function(resolve, reject) {
+                        cognitoIdentityServiceProvider.adminResetUserPassword(params, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res)
+                                    return resolve(res);
+                                console.error('CognitoService : adminResetUserPassword -> adminResetUserPassword', err);
+                                return reject(err);
+                            }));
                     }));
-                }));
             };
         /**
          * @param {?} username
          * @param {?} userAttributes
          * @return {?}
          */
-        CognitoService.prototype.adminUpdateUserAttributes = /**
-         * @param {?} username
-         * @param {?} userAttributes
-         * @return {?}
-         */
-            function (username, userAttributes) {
+        CognitoService.prototype.adminUpdateUserAttributes =
+            /**
+             * @param {?} username
+             * @param {?} userAttributes
+             * @return {?}
+             */
+            function(username, userAttributes) {
                 this.setAdmin();
                 /** @type {?} */
                 var params = {
@@ -1277,46 +1402,55 @@
                 };
                 /** @type {?} */
                 var cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoIdentityServiceProvider.adminUpdateUserAttributes(params, ( /**
-                     * @param {?} err
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res)
-                            return resolve(res);
-                        console.error('CognitoService : adminUpdateUserAttributes -> adminUpdateUserAttributes', err);
-                        return reject(err);
+                     */
+                    function(resolve, reject) {
+                        cognitoIdentityServiceProvider.adminUpdateUserAttributes(params, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res)
+                                    return resolve(res);
+                                console.error('CognitoService : adminUpdateUserAttributes -> adminUpdateUserAttributes', err);
+                                return reject(err);
+                            }));
                     }));
-                }));
             };
         /**
          * @param {?} usernameKey
          * @param {?} username
          * @return {?}
          */
-        CognitoService.prototype.resetExpiredAccount = /**
-         * @param {?} usernameKey
-         * @param {?} username
-         * @return {?}
-         */
-            function (usernameKey, username) {
+        CognitoService.prototype.resetExpiredAccount =
+            /**
+             * @param {?} usernameKey
+             * @param {?} username
+             * @return {?}
+             */
+            function(usernameKey, username) {
                 /** @type {?} */
                 var attributes = [];
-                attributes.push({ Name: usernameKey, Value: username });
+                attributes.push({
+                    Name: usernameKey,
+                    Value: username
+                });
                 return this.adminUpdateUserAttributes(username, attributes);
             };
         /**
          * @return {?}
          */
-        CognitoService.prototype.setAdmin = /**
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.setAdmin =
+            /**
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var creds = new AWS.Credentials(this.adminAccessKeyId, this.adminSecretKeyId);
                 AWS.config.region = this.region;
@@ -1358,7 +1492,7 @@
              * @param {?=} password
              * @return {?}
              */
-            function (provider, username, password) {
+            function(provider, username, password) {
                 switch (provider) {
                     case AuthType.COGNITO:
                         return this.authenticateCognitoUser(username, password);
@@ -1380,11 +1514,12 @@
          * Refresh a user's session (retrieve refreshed tokens)
          * @return {?}
          */
-        CognitoService.prototype.refreshSession = /**
-         * Refresh a user's session (retrieve refreshed tokens)
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.refreshSession =
+            /**
+             * Refresh a user's session (retrieve refreshed tokens)
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var provider = null;
                 provider = this.getProvider();
@@ -1405,10 +1540,11 @@
         /**
          * @return {?}
          */
-        CognitoService.prototype.signOut = /**
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.signOut =
+            /**
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var provider = null;
                 provider = this.getProvider();
@@ -1451,7 +1587,7 @@
              * @param {?} password
              * @return {?}
              */
-            function (username, password) {
+            function(username, password) {
                 var _this = this;
                 /** @type {?} */
                 var authenticationData = {
@@ -1462,130 +1598,160 @@
                 var authenticationDetails = new AWSCognito.AuthenticationDetails(authenticationData);
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser(username);
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.authenticateUser(authenticationDetails, {
-                        newPasswordRequired: ( /**
-                         * @param {?} userAttributes
-                         * @param {?} requiredAttributes
-                         * @return {?}
-                         */function (userAttributes, requiredAttributes) {
-                            _this.cognitoUser = cognitoUser; // NOTE: https://github.com/amazon-archives/amazon-cognito-identity-js/issues/365
-                            // NOTE: https://github.com/amazon-archives/amazon-cognito-identity-js/issues/365
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.NEW_PASSWORD_REQUIRED, { userAttributes: userAttributes, requiredAttributes: requiredAttributes });
-                            return resolve(response);
-                        }),
-                        onSuccess: ( /**
-                         * @param {?} session
-                         * @return {?}
-                         */function (session) {
-                            _this.setUsername(username);
-                            _this.updateTokens(session);
-                            _this.setProvider(AuthType.COGNITO);
-                            _this.updateCredentials();
-                            _this.onSignIn.emit();
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_SUCCESS, session);
-                            return resolve(response);
-                        }),
-                        onFailure: ( /**
-                         * @param {?} err
-                         * @return {?}
-                         */function (err) {
-                            console.error('CognitoService : authenticateCognitoUser -> authenticateUser', err);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                            return reject(response);
-                        }),
-                        mfaSetup: ( /**
-                         * @param {?} challengeName
-                         * @param {?} challengeParameters
-                         * @return {?}
-                         */function (challengeName, challengeParameters) {
-                            cognitoUser.associateSoftwareToken({
-                                associateSecretCode: ( /**
-                                 * @param {?} secretCode
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
+                     * @return {?}
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.authenticateUser(authenticationDetails, {
+                            newPasswordRequired: (
+                                /**
+                                 * @param {?} userAttributes
+                                 * @param {?} requiredAttributes
                                  * @return {?}
-                                 */function (secretCode) {
+                                 */
+                                function(userAttributes, requiredAttributes) {
+                                    _this.cognitoUser = cognitoUser; // NOTE: https://github.com/amazon-archives/amazon-cognito-identity-js/issues/365
+                                    // NOTE: https://github.com/amazon-archives/amazon-cognito-identity-js/issues/365
                                     /** @type {?} */
-                                    var response = new CognitoServiceResponse(RespType.MFA_SETUP_ASSOCIATE_SECRETE_CODE, secretCode);
+                                    var response = new CognitoServiceResponse(RespType.NEW_PASSWORD_REQUIRED, {
+                                        userAttributes: userAttributes,
+                                        requiredAttributes: requiredAttributes
+                                    });
                                     return resolve(response);
                                 }),
-                                onFailure: ( /**
+                            onSuccess: (
+                                /**
+                                 * @param {?} session
+                                 * @return {?}
+                                 */
+                                function(session) {
+                                    _this.setUsername(username);
+                                    _this.updateTokens(session);
+                                    _this.setProvider(AuthType.COGNITO);
+                                    _this.updateCredentials();
+                                    _this.onSignIn.emit();
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_SUCCESS, session);
+                                    return resolve(response);
+                                }),
+                            onFailure: (
+                                /**
                                  * @param {?} err
                                  * @return {?}
-                                 */function (err) {
+                                 */
+                                function(err) {
+                                    console.error('CognitoService : authenticateCognitoUser -> authenticateUser', err);
                                     /** @type {?} */
-                                    var response = new CognitoServiceResponse(RespType.MFA_SETUP_ON_FAILURE, err);
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
                                     return reject(response);
+                                }),
+                            mfaSetup: (
+                                /**
+                                 * @param {?} challengeName
+                                 * @param {?} challengeParameters
+                                 * @return {?}
+                                 */
+                                function(challengeName, challengeParameters) {
+                                    cognitoUser.associateSoftwareToken({
+                                        associateSecretCode: (
+                                            /**
+                                             * @param {?} secretCode
+                                             * @return {?}
+                                             */
+                                            function(secretCode) {
+                                                /** @type {?} */
+                                                var response = new CognitoServiceResponse(RespType.MFA_SETUP_ASSOCIATE_SECRETE_CODE, secretCode);
+                                                return resolve(response);
+                                            }),
+                                        onFailure: (
+                                            /**
+                                             * @param {?} err
+                                             * @return {?}
+                                             */
+                                            function(err) {
+                                                /** @type {?} */
+                                                var response = new CognitoServiceResponse(RespType.MFA_SETUP_ON_FAILURE, err);
+                                                return reject(response);
+                                            })
+                                    });
+                                }),
+                            mfaRequired: (
+                                /**
+                                 * @param {?} challengeName
+                                 * @param {?} challengeParameters
+                                 * @return {?}
+                                 */
+                                function(challengeName, challengeParameters) {
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.MFA_REQUIRED, {
+                                        challengeName: challengeName,
+                                        challengeParameters: challengeParameters
+                                    });
+                                    return resolve(response);
                                 })
-                            });
-                        }),
-                        mfaRequired: ( /**
-                         * @param {?} challengeName
-                         * @param {?} challengeParameters
-                         * @return {?}
-                         */function (challengeName, challengeParameters) {
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.MFA_REQUIRED, { challengeName: challengeName, challengeParameters: challengeParameters });
-                            return resolve(response);
-                        })
-                    });
-                }));
+                        });
+                    }));
             };
         /**
          * @private
          * @return {?}
          */
-        CognitoService.prototype.refreshCognitoSession = /**
-         * @private
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.refreshCognitoSession =
+            /**
+             * @private
+             * @return {?}
+             */
+            function() {
                 var _this = this;
                 /** @type {?} */
                 var tokens = this.getTokens();
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
                 /** @type {?} */
-                var refreshToken = new AWSCognito.CognitoRefreshToken({ RefreshToken: tokens.refreshToken });
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    cognitoUser.refreshSession(refreshToken, ( /**
-                     * @param {?} err
-                     * @param {?} res
+                var refreshToken = new AWSCognito.CognitoRefreshToken({
+                    RefreshToken: tokens.refreshToken
+                });
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (err, res) {
-                        if (res) {
-                            _this.updateTokens(res);
-                            _this.updateCredentials();
-                            /** @type {?} */
-                            var response_8 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                            return resolve(response_8);
-                        }
-                        console.error('CognitoService : refreshSession -> refreshSession', err);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                        return reject(response);
+                     */
+                    function(resolve, reject) {
+                        cognitoUser.refreshSession(refreshToken, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res) {
+                                    _this.updateTokens(res);
+                                    _this.updateCredentials();
+                                    /** @type {?} */
+                                    var response_8 = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                    return resolve(response_8);
+                                }
+                                console.error('CognitoService : refreshSession -> refreshSession', err);
+                                /** @type {?} */
+                                var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                return reject(response);
+                            }));
                     }));
-                }));
             };
         /**
          * @private
          * @return {?}
          */
-        CognitoService.prototype.signOutCognito = /**
-         * @private
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.signOutCognito =
+            /**
+             * @private
+             * @return {?}
+             */
+            function() {
                 /** @type {?} */
                 var cognitoUser = this.getCognitoUser();
                 if (cognitoUser)
@@ -1612,111 +1778,142 @@
              * @private
              * @return {?}
              */
-            function () {
+            function() {
                 var _this = this;
                 /** @type {?} */
                 var params = {
                     client_id: this.googleId,
                     scope: this.googleScope
                 };
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    gapi.load('auth2', {
-                        callback: ( /**
-                         * @param {?} _
-                         * @return {?}
-                         */function (_) {
-                            gapi.auth2.init(params).then(( /**
-                             * @param {?} googleAuth
-                             * @return {?}
-                             */function (googleAuth) {
-                                _this.googleAuth = googleAuth;
-                                /** @type {?} */
-                                var response = new CognitoServiceResponse(RespType.ON_SUCCESS, googleAuth);
-                                return resolve(response);
-                            }), ( /**
-                             * @param {?} reason
-                             * @return {?}
-                             */function (reason) {
-                                console.error('CognitoService : initGoogle -> GoogleAuth', reason);
-                                /** @type {?} */
-                                var response = new CognitoServiceResponse(RespType.ON_FAILURE, reason);
-                                return reject(response);
-                            }));
-                        }),
-                        onerror: ( /**
-                         * @param {?} _
-                         * @return {?}
-                         */function (_) {
-                            // Handle loading error
-                            /** @type {?} */
-                            var error = 'gapi.client failed to load';
-                            console.error('CognitoService : initGoogle -> load', error);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_ERROR, error);
-                            return reject(response);
-                        }),
-                        timeout: 5000,
-                        // 5 seconds
-                        ontimeout: ( /**
-                         * @param {?} _
-                         * @return {?}
-                         */function (_) {
-                            // Handle timeout
-                            /** @type {?} */
-                            var error = 'gapi.client could not load in a timely manner';
-                            console.error('CognitoService : initGoogle -> load', error);
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_TIMEOUT, error);
-                            return reject(response);
-                        })
-                    });
-                }));
-            };
-        /**
-         * @private
-         * @param {?} action
-         * @return {?}
-         */
-        CognitoService.prototype.callGoogle = /**
-         * @private
-         * @param {?} action
-         * @return {?}
-         */
-            function (action) {
-                var _this = this;
-                if (this.googleAuth) {
-                    return this.makeGoogle(action);
-                }
-                else {
-                    return new Promise(( /**
+                return new Promise((
+                    /**
                      * @param {?} resolve
                      * @param {?} reject
                      * @return {?}
-                     */function (resolve, reject) {
-                        _this.initGoogle().then(( /**
-                         * @param {?} _
-                         * @return {?}
-                         */function (_) {
-                            _this.makeGoogle(action).then(( /**
-                             * @param {?} res
-                             * @return {?}
-                             */function (res) { return resolve(res); })).catch(( /**
-                             * @param {?} err
-                             * @return {?}
-                             */function (err) { return reject(err); }));
-                        })).catch(( /**
-                         * @param {?} error
-                         * @return {?}
-                         */function (error) {
-                            /** @type {?} */
-                            var response = new CognitoServiceResponse(RespType.ON_FAILURE, error);
-                            return Promise.reject(response);
-                        }));
+                     */
+                    function(resolve, reject) {
+                        gapi.load('auth2', {
+                            callback: (
+                                /**
+                                 * @param {?} _
+                                 * @return {?}
+                                 */
+                                function(_) {
+                                    gapi.auth2.init(params)
+                                        .then((
+                                            /**
+                                             * @param {?} googleAuth
+                                             * @return {?}
+                                             */
+                                            function(googleAuth) {
+                                                _this.googleAuth = googleAuth;
+                                                /** @type {?} */
+                                                var response = new CognitoServiceResponse(RespType.ON_SUCCESS, googleAuth);
+                                                return resolve(response);
+                                            }), (
+                                            /**
+                                             * @param {?} reason
+                                             * @return {?}
+                                             */
+                                            function(reason) {
+                                                console.error('CognitoService : initGoogle -> GoogleAuth', reason);
+                                                /** @type {?} */
+                                                var response = new CognitoServiceResponse(RespType.ON_FAILURE, reason);
+                                                return reject(response);
+                                            }));
+                                }),
+                            onerror: (
+                                /**
+                                 * @param {?} _
+                                 * @return {?}
+                                 */
+                                function(_) {
+                                    // Handle loading error
+                                    /** @type {?} */
+                                    var error = 'gapi.client failed to load';
+                                    console.error('CognitoService : initGoogle -> load', error);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_ERROR, error);
+                                    return reject(response);
+                                }),
+                            timeout: 5000,
+                            // 5 seconds
+                            ontimeout: (
+                                /**
+                                 * @param {?} _
+                                 * @return {?}
+                                 */
+                                function(_) {
+                                    // Handle timeout
+                                    /** @type {?} */
+                                    var error = 'gapi.client could not load in a timely manner';
+                                    console.error('CognitoService : initGoogle -> load', error);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_TIMEOUT, error);
+                                    return reject(response);
+                                })
+                        });
                     }));
+            };
+        /**
+         * @private
+         * @param {?} action
+         * @return {?}
+         */
+        CognitoService.prototype.callGoogle =
+            /**
+             * @private
+             * @param {?} action
+             * @return {?}
+             */
+            function(action) {
+                var _this = this;
+                if (this.googleAuth) {
+                    return this.makeGoogle(action);
+                } else {
+                    return new Promise((
+                        /**
+                         * @param {?} resolve
+                         * @param {?} reject
+                         * @return {?}
+                         */
+                        function(resolve, reject) {
+                            _this.initGoogle()
+                                .then((
+                                    /**
+                                     * @param {?} _
+                                     * @return {?}
+                                     */
+                                    function(_) {
+                                        _this.makeGoogle(action)
+                                            .then((
+                                                /**
+                                                 * @param {?} res
+                                                 * @return {?}
+                                                 */
+                                                function(res) {
+                                                    return resolve(res);
+                                                }))
+                                            .catch((
+                                                /**
+                                                 * @param {?} err
+                                                 * @return {?}
+                                                 */
+                                                function(err) {
+                                                    return reject(err);
+                                                }));
+                                    }))
+                                .catch((
+                                    /**
+                                     * @param {?} error
+                                     * @return {?}
+                                     */
+                                    function(error) {
+                                        /** @type {?} */
+                                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, error);
+                                        return Promise.reject(response);
+                                    }));
+                        }));
                 }
             };
         /**
@@ -1724,12 +1921,13 @@
          * @param {?} action
          * @return {?}
          */
-        CognitoService.prototype.makeGoogle = /**
-         * @private
-         * @param {?} action
-         * @return {?}
-         */
-            function (action) {
+        CognitoService.prototype.makeGoogle =
+            /**
+             * @private
+             * @param {?} action
+             * @return {?}
+             */
+            function(action) {
                 switch (action) {
                     case GoogleAction.AUTHENTICATE:
                         return this.authenticateGoogleUser();
@@ -1753,113 +1951,137 @@
          * @private
          * @return {?}
          */
-        CognitoService.prototype.authenticateGoogleUser = /**
-         * @private
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.authenticateGoogleUser =
+            /**
+             * @private
+             * @return {?}
+             */
+            function() {
                 var _this = this;
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    /** @type {?} */
-                    var options = {
-                        scope: _this.googleScope
-                    };
-                    _this.googleAuth.signIn(options).then(( /**
-                     * @param {?} googleUser
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (googleUser) {
+                     */
+                    function(resolve, reject) {
                         /** @type {?} */
-                        var googleResponse = googleUser.getAuthResponse();
-                        /** @type {?} */
-                        var googleProfile = googleUser.getBasicProfile();
-                        _this.setUsername(googleProfile.getName());
-                        _this.setIdToken(googleResponse.id_token);
-                        _this.setExpiresAt(googleResponse.expires_at);
-                        _this.setProvider(AuthType.GOOGLE);
-                        _this.updateCredentials();
-                        _this.onSignIn.emit();
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_SUCCESS, googleProfile);
-                        return resolve(response);
-                    }), ( /**
-                     * @param {?} onRejected
-                     * @return {?}
-                     */function (onRejected) {
-                        // Can be : popup_blocked_by_browser
-                        console.error('CognitoService : authenticateGoogleUser -> signIn', onRejected);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_REJECTED, onRejected);
-                        return reject(response);
-                    })).catch(( /**
-                     * @param {?} err
-                     * @return {?}
-                     */function (err) {
-                        console.error('CognitoService : authenticateGoogleUser -> signIn', err);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                        return reject(response);
+                        var options = {
+                            scope: _this.googleScope
+                        };
+                        _this.googleAuth.signIn(options)
+                            .then((
+                                /**
+                                 * @param {?} googleUser
+                                 * @return {?}
+                                 */
+                                function(googleUser) {
+                                    /** @type {?} */
+                                    var googleResponse = googleUser.getAuthResponse();
+                                    /** @type {?} */
+                                    var googleProfile = googleUser.getBasicProfile();
+                                    _this.setUsername(googleProfile.getName());
+                                    _this.setIdToken(googleResponse.id_token);
+                                    _this.setExpiresAt(googleResponse.expires_at);
+                                    _this.setProvider(AuthType.GOOGLE);
+                                    _this.updateCredentials();
+                                    _this.onSignIn.emit();
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_SUCCESS, googleProfile);
+                                    return resolve(response);
+                                }), (
+                                /**
+                                 * @param {?} onRejected
+                                 * @return {?}
+                                 */
+                                function(onRejected) {
+                                    // Can be : popup_blocked_by_browser
+                                    console.error('CognitoService : authenticateGoogleUser -> signIn', onRejected);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_REJECTED, onRejected);
+                                    return reject(response);
+                                }))
+                            .catch((
+                                /**
+                                 * @param {?} err
+                                 * @return {?}
+                                 */
+                                function(err) {
+                                    console.error('CognitoService : authenticateGoogleUser -> signIn', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                }));
                     }));
-                }));
             };
         /**
          * @private
          * @return {?}
          */
-        CognitoService.prototype.refreshGoogleSession = /**
-         * @private
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.refreshGoogleSession =
+            /**
+             * @private
+             * @return {?}
+             */
+            function() {
                 var _this = this;
                 /** @type {?} */
                 var googleUser = null;
                 googleUser = this.googleAuth.currentUser.get();
-                return new Promise(( /**
-                 * @param {?} resolve
-                 * @param {?} reject
-                 * @return {?}
-                 */function (resolve, reject) {
-                    googleUser.reloadAuthResponse().then(( /**
-                     * @param {?} res
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
-                     */function (res) {
-                        _this.setIdToken(res.id_token);
-                        _this.setExpiresAt(res.expires_at);
-                        _this.updateCredentials();
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
-                        return resolve(response);
-                    })).catch(( /**
-                     * @param {?} err
-                     * @return {?}
-                     */function (err) {
-                        console.error('CognitoService : refreshGoogleSession -> reloadAuthResponse', err);
-                        /** @type {?} */
-                        var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
-                        return reject(response);
+                     */
+                    function(resolve, reject) {
+                        googleUser.reloadAuthResponse()
+                            .then((
+                                /**
+                                 * @param {?} res
+                                 * @return {?}
+                                 */
+                                function(res) {
+                                    _this.setIdToken(res.id_token);
+                                    _this.setExpiresAt(res.expires_at);
+                                    _this.updateCredentials();
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_SUCCESS, res);
+                                    return resolve(response);
+                                }))
+                            .catch((
+                                /**
+                                 * @param {?} err
+                                 * @return {?}
+                                 */
+                                function(err) {
+                                    console.error('CognitoService : refreshGoogleSession -> reloadAuthResponse', err);
+                                    /** @type {?} */
+                                    var response = new CognitoServiceResponse(RespType.ON_FAILURE, err);
+                                    return reject(response);
+                                }));
                     }));
-                }));
             };
         /**
          * @private
          * @return {?}
          */
-        CognitoService.prototype.signOutGoogle = /**
-         * @private
-         * @return {?}
-         */
-            function () {
+        CognitoService.prototype.signOutGoogle =
+            /**
+             * @private
+             * @return {?}
+             */
+            function() {
                 var _this = this;
-                this.googleAuth.signOut().then(( /**
-                 * @param {?} _
-                 * @return {?}
-                 */function (_) {
-                    _this.googleAuth.disconnect();
-                }));
+                this.googleAuth.signOut()
+                    .then((
+                        /**
+                         * @param {?} _
+                         * @return {?}
+                         */
+                        function(_) {
+                            _this.googleAuth.disconnect();
+                        }));
             };
         // !SECTION
         // -------------------------------------------------------------------------------------------
@@ -1896,7 +2118,7 @@
              * @param {?} username
              * @return {?}
              */
-            function (username) {
+            function(username) {
                 /** @type {?} */
                 var cognitoUser = null;
                 /** @type {?} */
@@ -1925,7 +2147,7 @@
              * @param {?} expiresAt
              * @return {?}
              */
-            function (expiresAt) {
+            function(expiresAt) {
                 /** @type {?} */
                 var storageKey = null;
                 storageKey = this.storagePrefix + 'ExpiresAt';
@@ -1945,7 +2167,7 @@
              * @param {?} username
              * @return {?}
              */
-            function (username) {
+            function(username) {
                 /** @type {?} */
                 var storageKey = null;
                 storageKey = this.storagePrefix + 'Username';
@@ -1965,7 +2187,7 @@
              * @param {?} provider
              * @return {?}
              */
-            function (provider) {
+            function(provider) {
                 /** @type {?} */
                 var storageKey = null;
                 storageKey = this.storagePrefix + 'Provider';
@@ -1985,7 +2207,7 @@
              * @param {?} token
              * @return {?}
              */
-            function (token) {
+            function(token) {
                 /** @type {?} */
                 var storageKey = null;
                 storageKey = this.storagePrefix + 'IdToken';
@@ -1996,12 +2218,13 @@
          * @param {?} session
          * @return {?}
          */
-        CognitoService.prototype.setTokens = /**
-         * @private
-         * @param {?} session
-         * @return {?}
-         */
-            function (session) {
+        CognitoService.prototype.setTokens =
+            /**
+             * @private
+             * @param {?} session
+             * @return {?}
+             */
+            function(session) {
                 /** @type {?} */
                 var storageKey = null;
                 /** @type {?} */
@@ -2010,13 +2233,18 @@
                 var tokensObj = null;
                 storageKey = this.storagePrefix + 'SessionTokens';
                 tokensObj = {
-                    accessToken: session.getAccessToken().getJwtToken(),
-                    accessTokenExpiresAt: session.getAccessToken().getExpiration() * 1000,
+                    accessToken: session.getAccessToken()
+                        .getJwtToken(),
+                    accessTokenExpiresAt: session.getAccessToken()
+                        .getExpiration() * 1000,
                     // Seconds to milliseconds
-                    idToken: session.getIdToken().getJwtToken(),
-                    idTokenExpiresAt: session.getIdToken().getExpiration() * 1000,
+                    idToken: session.getIdToken()
+                        .getJwtToken(),
+                    idTokenExpiresAt: session.getIdToken()
+                        .getExpiration() * 1000,
                     // Seconds to milliseconds
-                    refreshToken: session.getRefreshToken().getToken()
+                    refreshToken: session.getRefreshToken()
+                        .getToken()
                 };
                 tokensStr = JSON.stringify(tokensObj);
                 localStorage.setItem(storageKey, tokensStr);
@@ -2026,12 +2254,13 @@
          * @param {?} session
          * @return {?}
          */
-        CognitoService.prototype.updateTokens = /**
-         * @private
-         * @param {?} session
-         * @return {?}
-         */
-            function (session) {
+        CognitoService.prototype.updateTokens =
+            /**
+             * @private
+             * @param {?} session
+             * @return {?}
+             */
+            function(session) {
                 /** @type {?} */
                 var tokens = null;
                 this.setTokens(session);
@@ -2051,25 +2280,39 @@
              * @private
              * @return {?}
              */
-            function () {
+            function() {
                 localStorage.removeItem(this.storagePrefix + 'Username');
                 localStorage.removeItem(this.storagePrefix + 'Provider');
                 localStorage.removeItem(this.storagePrefix + 'IdToken');
                 localStorage.removeItem(this.storagePrefix + 'ExpiresAt');
                 localStorage.removeItem(this.storagePrefix + 'SessionTokens');
             };
-        CognitoService.decorators = [
-            { type: i0.Injectable, args: [{
-                        providedIn: 'root'
-                    },] }
-        ];
+        CognitoService.decorators = [{
+            type: i0.Injectable,
+            args: [{
+                providedIn: 'root'
+            }, ]
+        }];
         /** @nocollapse */
-        CognitoService.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: ['cognitoConst',] }, { type: i0.Optional }] }
-            ];
+        CognitoService.ctorParameters = function() {
+            return [{
+                type: undefined,
+                decorators: [{
+                    type: i0.Inject,
+                    args: ['cognitoConst', ]
+                }, {
+                    type: i0.Optional
+                }]
+            }];
         };
-        /** @nocollapse */ CognitoService.ngInjectableDef = i0.defineInjectable({ factory: function CognitoService_Factory() { return new CognitoService(i0.inject("cognitoConst", 8)); }, token: CognitoService, providedIn: "root" });
+        /** @nocollapse */
+        CognitoService.ngInjectableDef = i0.defineInjectable({
+            factory: function CognitoService_Factory() {
+                return new CognitoService(i0.inject("cognitoConst", 8));
+            },
+            token: CognitoService,
+            providedIn: "root"
+        });
         return CognitoService;
     }());
 
@@ -2089,7 +2332,9 @@
     exports.GoogleAction = GoogleAction;
     exports.CognitoService = CognitoService;
 
-    Object.defineProperty(exports, '__esModule', { value: true });
+    Object.defineProperty(exports, '__esModule', {
+        value: true
+    });
 
 })));
 

@@ -108,7 +108,7 @@ export declare class CognitoService {
      * @param newPassword
      */
     changePassword(oldPassword: string, newPassword: string): Promise<CognitoServiceResponse>;
-    adminCreateUser(username: string, password: string, email: string, offerId: string, clientId: string, firstName: string, lastName: string, onlineUser: string): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminCreateUserResponse>;
+    adminCreateUser(username: string, password: string, email: string, offerId: string, clientId: string, firstName: string, lastName: string, onlineUser: string, resubmission: string): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminCreateUserResponse>;
     adminAddUserToGroup(username: string, groupname: string): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminCreateUserResponse>;
     listGroups(): Promise<AWS.AWSError | any>;
     listUsers(): Promise<AWS.AWSError | any>;
