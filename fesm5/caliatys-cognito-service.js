@@ -78,7 +78,7 @@ var CognitoService = /** @class */ (function() {
         this.poolData = {
             UserPoolId: null,
             // CognitoUserPool
-            ClientId: null // CognitoUserPoolClient
+            clientList: null // CognitoUserPoolClient
         };
         this.onSignIn = new EventEmitter();
         this.onSignOut = new EventEmitter();
@@ -86,7 +86,7 @@ var CognitoService = /** @class */ (function() {
         this.googleId = cognitoConst.googleId;
         this.googleScope = cognitoConst.googleScope;
         this.poolData.UserPoolId = cognitoConst.poolData.UserPoolId;
-        this.poolData.ClientId = cognitoConst.poolData.ClientId;
+        this.poolData.clientList = cognitoConst.poolData.clientList;
         this.identityPool = cognitoConst.identityPool;
         this.region = cognitoConst.region;
         this.adminAccessKeyId = cognitoConst.adminAccessKeyId;
@@ -1249,7 +1249,7 @@ var CognitoService = /** @class */ (function() {
      */
     CognitoService.prototype.adminCreateUser =
 
-        function(username, password, email, offerId, clientId, firstName, lastName, onlineUser, resubmission) {
+        function(username, password, email, promotionId, clientList, firstName, lastName, onlineSubmission, resubmission) {
             this.setAdmin();
             /** @type {?} */
             var params = {
@@ -1261,12 +1261,12 @@ var CognitoService = /** @class */ (function() {
                         "Value": email
                     },
                     {
-                        "Name": "custom:offerno",
-                        "Value": offerId
+                        "Name": "custom:promotionId",
+                        "Value": promotionId
                     },
                     {
-                        "Name": "custom:clientId",
-                        "Value": clientId
+                        "Name": "custom:clientList",
+                        "Value": clientList
                     },
                     {
                         "Name": "name",
@@ -1277,8 +1277,8 @@ var CognitoService = /** @class */ (function() {
                         "Value": lastName
                     },
                     {
-                        "Name": "custom:onlineUser",
-                        "Value": onlineUser
+                        "Name": "custom:onlineSubmission",
+                        "Value": onlineSubmission
                     },
                     {
                         "Name": "custom:resubmission",
