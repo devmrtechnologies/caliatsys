@@ -115,6 +115,8 @@ export declare class CognitoService {
     adminEnableUser(username: string): Promise<AWS.AWSError | any>;
     adminDisableUser(username: string): Promise<AWS.AWSError | any>;
     adminDeleteUser(username: string): Promise<AWS.AWSError | any>;
+    adminGetUser(username: string): Promise<AWS.AWSError | any>;
+    adminGetUser(username: string,limit:number,nextToken: string): Promise<AWS.AWSError | any>;
     adminResetUserPassword(username: string): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminResetUserPasswordResponse>;
     adminUpdateUserAttributes(username: string, userAttributes: AWS.CognitoIdentityServiceProvider.Types.AttributeListType): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminUpdateUserAttributesResponse>;
     resetExpiredAccount(usernameKey: string, username: string): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminUpdateUserAttributesResponse>;

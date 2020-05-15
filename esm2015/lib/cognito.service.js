@@ -48,7 +48,7 @@ export class CognitoService {
         this.poolData = {
             UserPoolId: null,
             // CognitoUserPool
-            clientList: null // CognitoUserPoolClient
+            ClientId: null // CognitoUserPoolClient
         };
         this.onSignIn = new EventEmitter();
         this.onSignOut = new EventEmitter();
@@ -56,7 +56,7 @@ export class CognitoService {
         this.googleId = cognitoConst.googleId;
         this.googleScope = cognitoConst.googleScope;
         this.poolData.UserPoolId = cognitoConst.poolData.UserPoolId;
-        this.poolData.clientList = cognitoConst.poolData.clientList;
+        this.poolData.ClientId = cognitoConst.poolData.ClientId;
         this.identityPool = cognitoConst.identityPool;
         this.region = cognitoConst.region;
         this.adminAccessKeyId = cognitoConst.adminAccessKeyId;
@@ -1021,6 +1021,74 @@ export class CognitoService {
                     }));
             }));
     }
+    /**
+     * @param {?} username
+     * @return {?}
+     */
+    adminGetUser(username) {
+        this.setAdmin();
+        /** @type {?} */
+        let params = {
+            UserPoolId: this.poolData.UserPoolId,
+            Username: username
+        };
+        /** @type {?} */
+        let cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
+        return new Promise((
+            /**
+             * @param {?} resolve
+             * @param {?} reject
+             * @return {?}
+             */
+            (resolve, reject) => {
+                cognitoIdentityServiceProvider.adminGetUser(params, (
+                    /**
+                     * @param {?} err
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    (err, res) => {
+                        if (res)
+                            return resolve(res);
+                        console.error('CognitoService : adminGetUser -> adminGetUser', err);
+                        return reject(err);
+                    }));
+            }));
+    }
+
+    adminListGroupsForUser(username,limit,nextToken) {
+        this.setAdmin();
+        /** @type {?} */
+        let params = {
+            Limit: limit,
+            NextToken: nextToken,
+            UserPoolId: this.poolData.UserPoolId,
+            Username: username
+        };
+        /** @type {?} */
+        let cognitoIdentityServiceProvider = new CognitoIdentityServiceProvider();
+        return new Promise((
+            /**
+             * @param {?} resolve
+             * @param {?} reject
+             * @return {?}
+             */
+            (resolve, reject) => {
+                cognitoIdentityServiceProvider.adminListGroupsForUser(params, (
+                    /**
+                     * @param {?} err
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    (err, res) => {
+                        if (res)
+                            return resolve(res);
+                        console.error('CognitoService : adminListGroupsForUser -> adminListGroupsForUser', err);
+                        return reject(err);
+                    }));
+            }));
+    }
+
     /**
      * @param {?} username
      * @return {?}

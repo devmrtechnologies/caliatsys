@@ -45,7 +45,7 @@ var CognitoService = /** @class */ (function() {
         this.poolData = {
             UserPoolId: null,
             // CognitoUserPool
-            clientList: null // CognitoUserPoolClient
+            ClientId: null // CognitoUserPoolClient
         };
         this.onSignIn = new EventEmitter();
         this.onSignOut = new EventEmitter();
@@ -53,7 +53,7 @@ var CognitoService = /** @class */ (function() {
         this.googleId = cognitoConst.googleId;
         this.googleScope = cognitoConst.googleScope;
         this.poolData.UserPoolId = cognitoConst.poolData.UserPoolId;
-        this.poolData.clientList = cognitoConst.poolData.clientList;
+        this.poolData.ClientId = cognitoConst.poolData.ClientId;
         this.identityPool = cognitoConst.identityPool;
         this.region = cognitoConst.region;
         this.adminAccessKeyId = cognitoConst.adminAccessKeyId;
@@ -1224,7 +1224,7 @@ var CognitoService = /** @class */ (function() {
          * @param {?} password
          * @return {?}
          */
-        function(username, password, email, promotionId, clientList, firstName, lastName, onlineSubmission, resubmission) {
+         function(username, password, email, promotionId, clientList, firstName, lastName, onlineSubmission, resubmission){
             this.setAdmin();
             /** @type {?} */
             // var params = {
@@ -1330,6 +1330,81 @@ var CognitoService = /** @class */ (function() {
                         }));
                 }));
         };
+        /**
+         * @param {?} username
+         * @return {?}
+         */
+        CognitoService.prototype.adminGetUser =
+            /**
+             * @param {?} username
+             * @return {?}
+             */
+            function(username) {
+                this.setAdmin();
+                /** @type {?} */
+                var params = {
+                    UserPoolId: this.poolData.UserPoolId,
+                    Username: username
+                };
+                /** @type {?} */
+                var cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
+                return new Promise((
+                    /**
+                     * @param {?} resolve
+                     * @param {?} reject
+                     * @return {?}
+                     */
+                    function(resolve, reject) {
+                        cognitoIdentityServiceProvider.adminGetUser(params, (
+                            /**
+                             * @param {?} err
+                             * @param {?} res
+                             * @return {?}
+                             */
+                            function(err, res) {
+                                if (res)
+                                    return resolve(res);
+                                console.error('CognitoService : adminGetUser -> adminGetUser', err);
+                                return reject(err);
+                            }));
+                    }));
+            };
+
+            CognitoService.prototype.adminListGroupsForUser =
+
+            function(username,limit,nextToken) {
+                this.setAdmin();
+                /** @type {?} */
+                var params = {
+                    Limit: limit,
+                    NextToken: nextToken,
+                    UserPoolId: this.poolData.UserPoolId,
+                    Username: username
+                };
+                /** @type {?} */
+                var cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
+                return new Promise((
+                        /**
+                         * @param {?} resolve
+                         * @param {?} reject
+                         * @return {?}
+                         */
+                         function(resolve, reject) {
+                            cognitoIdentityServiceProvider.adminListGroupsForUser(params, (
+                                /**
+                                 * @param {?} err
+                                 * @param {?} res
+                                 * @return {?}
+                                 */
+                                 function(err, res) {
+                                    if (res)
+                                        return resolve(res);
+                                    console.error('CognitoService : adminListGroupsForUser -> adminListGroupsForUser', err);
+                                    return reject(err);
+                                }));
+                        }));
+            };
+
     /**
      * @param {?} username
      * @return {?}
