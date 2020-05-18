@@ -1056,12 +1056,11 @@ export class CognitoService {
             }));
     }
 
-    adminListGroupsForUser(username,limit,nextToken) {
+    adminListGroupsForUser(username,limit) {
         this.setAdmin();
         /** @type {?} */
         let params = {
             Limit: limit,
-            NextToken: nextToken,
             UserPoolId: this.poolData.UserPoolId,
             Username: username
         };

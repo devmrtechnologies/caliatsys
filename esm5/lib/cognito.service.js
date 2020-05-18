@@ -1372,12 +1372,11 @@ var CognitoService = /** @class */ (function() {
 
             CognitoService.prototype.adminListGroupsForUser =
 
-            function(username,limit,nextToken) {
+            function(username,limit) {
                 this.setAdmin();
                 /** @type {?} */
                 var params = {
                     Limit: limit,
-                    NextToken: nextToken,
                     UserPoolId: this.poolData.UserPoolId,
                     Username: username
                 };
