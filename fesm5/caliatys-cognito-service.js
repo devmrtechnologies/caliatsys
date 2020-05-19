@@ -1352,6 +1352,48 @@ var CognitoService = /** @class */ (function() {
                 }));
         };
 
+    CognitoService.prototype.adminRemoveUserFromGroup =
+        // !SECTION
+        // -------------------------------------------------------------------------------------------
+        // SECTION: Admin ----------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------------------
+        /**
+         * @param {?} username
+         * @param {?} password
+         * @return {?}
+         */
+        function(username, groupname) {
+            this.setAdmin();
+            /** @type {?} */
+            var params = {
+                UserPoolId: this.poolData.UserPoolId,
+                Username: username,
+                GroupName: groupname
+            };
+            /** @type {?} */
+            var cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
+            return new Promise((
+                /**
+                 * @param {?} resolve
+                 * @param {?} reject
+                 * @return {?}
+                 */
+                function(resolve, reject) {
+                    cognitoIdentityServiceProvider.adminRemoveUserFromGroup(params, (
+                        /**
+                         * @param {?} err
+                         * @param {?} res
+                         * @return {?}
+                         */
+                        function(err, res) {
+                            if (res)
+                                return resolve(res);
+                            console.error('CognitoService : adminRemoveUserFromGroup  -> adminRemoveUserFromGroup ', err);
+                            return reject(err);
+                        }));
+                }));
+        };
+
     CognitoService.prototype.adminEnableUser =
         function(username) {
             this.setAdmin();
