@@ -109,9 +109,9 @@ export declare class CognitoService {
      */
     changePassword(oldPassword: string, newPassword: string): Promise<CognitoServiceResponse>;
     adminCreateUser(username: string, password: string, email: string, promotionId: string, clientList: string, firstName: string, lastName: string, onlineSubmission: string, resubmission: string): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminCreateUserResponse>;
-    adminAddUserToGroup(username: string, groupname: string): Promise<AWS.AWSError | 
-    adminRemoveUserFromGroup(username: string, groupname: string): Promise<AWS.AWSError | 
-    AWS.CognitoIdentityServiceProvider.AdminCreateUserResponse>;
+    adminAddUserToGroup(username: string, groupname: string): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminCreateUserResponse>;
+    adminRemoveUserFromGroup(username: string, groupname: string): Promise<AWS.AWSError | AWS.CognitoIdentityServiceProvider.AdminCreateUserResponse>;
+    //AWS.CognitoIdentityServiceProvider.AdminCreateUserResponse>;
     listGroups(): Promise<AWS.AWSError | any>;
     listUsers(): Promise<AWS.AWSError | any>;
     adminEnableUser(username: string): Promise<AWS.AWSError | any>;
